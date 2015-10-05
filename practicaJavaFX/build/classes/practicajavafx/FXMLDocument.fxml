@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="320" prefWidth="496.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicajavafx.FXMLDocumentController">
+    <children>
+        <MenuBar fx:id="Menu" />
+        <Pane fx:id="Contenedor" layoutX="10" layoutY="30" minHeight="280" minWidth="300">
+            <children>
+                <TextArea fx:id="txtArea" onKeyTyped="#keyInput" layoutX="10" layoutY="10" maxHeight="280" maxWidth="170" />
+                <Slider fx:id="slider" layoutX="10" layoutY="220" />
+                <ProgressBar fx:id="Bar" layoutX="10" layoutY="240" />
+                <Button fx:id="btnDisable" layoutX="170" layoutY="220" onAction="#OnDisable" text="Disable" />      
+            </children>
+        </Pane>
+        <Pane fx:id="ContenedorBtn" layoutX="323.0" layoutY="30.0" minHeight="67.0" minWidth="100" prefHeight="67.0" prefWidth="100.0">
+            <children>
+                <Button fx:id="btnDisappear" layoutX="0" minHeight="10" minWidth="100" onAction="#OnDisappear" text="Disappear" />
+                <Button fx:id="btnCenterApp" layoutX="0" layoutY="30.0" minHeight="10" minWidth="100" onAction="#CentrarApp" text="CenterApp" />      
+            </children>    
+        </Pane>
+        <Pane fx:id="ContenedorAbout" layoutX="210.0" layoutY="103.0" minHeight="60" minWidth="100" prefHeight="100" prefWidth="223.0" visible="false">
+         <children>
+            <Label layoutX="2.0" layoutY="14.0" prefHeight="17.0" prefWidth="223.0" text="Nombre: Carlos Alejandro Z. Robles" />
+            <Label layoutX="2.0" layoutY="42.0" prefHeight="17.0" prefWidth="223.0" text="Carrera: IDS" />
+            <Label layoutX="2.0" layoutY="78.0" prefHeight="17.0" prefWidth="223.0" text="Profesor: Dr. Juan Carlos Lopez Pimentel" />
+         </children>
+        </Pane>
+        <Button fx:id="btnClose" layoutX="300" layoutY="250" onAction="#Exit" text="Close" />
+        <Button fx:id="btnCredits" layoutX="360" layoutY="250" onAction="#onCredits"  text="Credits"/>              
+    </children>
+</AnchorPane>
