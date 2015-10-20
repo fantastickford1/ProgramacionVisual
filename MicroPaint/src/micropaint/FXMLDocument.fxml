@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="618.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="micropaint.FXMLDocumentController">
+   <children>
+      <ToolBar orientation="VERTICAL" prefHeight="453.0" prefWidth="104.0">
+        <items>
+          <Button fx:id="ractangle" onAction="#drawRect"  contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Rectangulo" />
+            <Button fx:id="line" onAction="#drawLine"  mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Linea" />
+            <Button fx:id="ovl" onAction="#drawOvl"  mnemonicParsing="false" prefWidth="78.0" text="Ovalo" />
+            <Button fx:id="penc" onAction="#drawPen" mnemonicParsing="false" prefWidth="78.0" text="Lapiz" />
+            <Button fx:id="erraser" onAction="#drawErr"  mnemonicParsing="false" prefWidth="78.0" text="Borrador">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem fx:id="arrasall" onAction="#clearCanvas" mnemonicParsing="false" text="Borrar todo" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Button>
+        </items>
+      </ToolBar>
+      <Canvas fx:id="canvasP" height="453.0" layoutX="104.0" width="515.0" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseDraggedListener"   onMouseExited="#onMouseExitedListener" />
+   </children>
+</AnchorPane>
