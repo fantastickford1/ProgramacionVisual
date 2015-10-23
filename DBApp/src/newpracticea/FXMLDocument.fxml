@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="368.0" prefWidth="482.0" style="-fx-background-color: #01B49C;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newpracticea.FXMLDocumentController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TextField fx:id="nameField" layoutX="62.0" layoutY="61.0" />
+      <TextField fx:id="lastNameField" layoutX="277.0" layoutY="61.0" />
+      <Label layoutX="112.0" layoutY="37.0" text="Nombres" />
+      <Label layoutX="328.0" layoutY="37.0" text="Apellidos" />
+      <TextField fx:id="rfcField" layoutX="62.0" layoutY="125.0" />
+      <Label layoutX="126.0" layoutY="99.0" text="RFC" />
+      <Label layoutX="327.0" layoutY="99.0" text="Direccion" />
+      <TextField fx:id="addresField" layoutX="277.0" layoutY="125.0" />
+      <TextField fx:id="phoneField" layoutX="167.0" layoutY="192.0" />
+      <Label layoutX="218.0" layoutY="167.0" text="Telefono" />
+      <Button fx:id="insertButton" layoutX="213.0" layoutY="263.0" mnemonicParsing="false" text="Insertar" onAction="#sendData"  />
+    </children>
+</AnchorPane>

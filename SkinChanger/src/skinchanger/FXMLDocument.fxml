@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="451.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="skinchanger.FXMLDocumentController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#close"  text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#resetButtonAction"  text="Reset" />
+                  <Menu mnemonicParsing="false" text="Theme">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#applyCSS"  text="Dark" />
+                        <MenuItem mnemonicParsing="false" onAction="#applyCSS"  text="Light" />
+                        <MenuItem mnemonicParsing="false" onAction="#applyCSS"  text="Dark blue" />
+                        <MenuItem mnemonicParsing="false" onAction="#applyCSS"  text="ShinyOrange" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" onAction="#aboutme" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ToolBar layoutY="27.0" prefHeight="40.0" prefWidth="451.0">
+        <items>
+            <ColorPicker fx:id="colorPicker" />
+          <Button fx:id="applyButton" onAction="#apply"  mnemonicParsing="false" text="Apply" />
+            <Button fx:id="resetButton" onAction="#resetButtonAction"  mnemonicParsing="false" text="Reset" />
+        </items>
+      </ToolBar>
+      <Pane layoutY="67.0" prefHeight="270.0" prefWidth="451.0">
+         <children>
+            <Label fx:id="titleLabel" layoutX="162.0" layoutY="14.0" text="Skin Changer">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="20.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="bar" layoutX="89.0" layoutY="83.0" prefHeight="40.0" prefWidth="200.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </ProgressBar>
+            <ProgressIndicator fx:id="progressIN" layoutX="307.0" layoutY="71.0" prefHeight="64.0" prefWidth="72.0" />
+            <Label layoutX="79.0" layoutY="161.0" text="Add Text">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtField" layoutX="162.0" layoutY="159.0" prefHeight="25.0" prefWidth="200.0" />
+            <Label layoutX="66.0" layoutY="200.0" text="Basic Skin" />
+            <RadioButton fx:id="lightRB" onAction="#changed"  layoutX="42.0" layoutY="228.0" mnemonicParsing="false" text="Light" />
+            <RadioButton fx:id="darkRB" onAction="#changed"  layoutX="105.0" layoutY="228.0" mnemonicParsing="false" text="Dark" />
+            <Button fx:id="InfoButton" onAction="#showInfo"  layoutX="288.0" layoutY="220.0" mnemonicParsing="false" text="Information" />
+            <Button fx:id="exitButton" onAction="#close"  layoutX="385.0" layoutY="220.0" mnemonicParsing="false" text="Exit" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
