@@ -28,7 +28,7 @@ public class FXMLDocumentController implements Initializable {
     private void sendData(ActionEvent event) {
         Conexion con = null;
         try {
-            con = new Conexion(Conexion.usrBD, Conexion.passBD,"mynewdatabase");
+            con = new Conexion(Conexion.usrBD, Conexion.passBD,"userdata");
         }catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -37,9 +37,9 @@ public class FXMLDocumentController implements Initializable {
         String lastname = lastNameField.getText();
         String rfc = rfcField.getText();
         String addr = addresField.getText();
-        int phone = Integer.parseInt(phoneField.getText());
+        long phone = Long.parseLong(phoneField.getText());
         Boolean resultado = false;
-        resultado = con.insertar("INSERT INTO userdata(Nombres,Apellidos,Direccion,Telefono,RFC) VALUES('"+name+"','"+lastname+"','"+addr+"',"+phone+",'"+rfc+"');");
+        resultado = con.insertar("INSERT INTO agenda(nombre,apellido,direccion,telefono,rfc) VALUES('"+name+"','"+lastname+"','"+addr+"',"+phone+",'"+rfc+"');");
         System.out.println("El resultado es: "+resultado);
     }
     

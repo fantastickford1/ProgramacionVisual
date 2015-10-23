@@ -40,7 +40,7 @@ public class Conexion {
     public Conexion(String userDB, String passDB, String projectDB) throws ClassNotFoundException, SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver"); //Comprobar el conector    org.gjt.mm.mysql.Driver
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:8889/"+projectDB, userDB, passDB);
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+projectDB, userDB, passDB);
             st=conexion.createStatement();
         } catch (ClassNotFoundException ex) {
             throw new ClassNotFoundException("Conector no encontrado. Mensaje de error: " + ex.getMessage());
