@@ -12,9 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -22,121 +21,86 @@ import javafx.scene.input.MouseEvent;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private GraphicsContext gc;
-    @FXML
-    private Canvas canvasP;
-    @FXML
-    private Button ractangle,line,ovl,penc,erraser;
-    @FXML
-    private MenuItem arrasall;
+    @FXML Canvas TheCanvas; 
+    private GraphicsContext[] gcs;
     
-    private boolean drawline = false;
-    private boolean drawoval = false;
-    private boolean drawrectangle = false;
-    private boolean erase = false;
-    private boolean freedesign = false;
-    
-    private boolean inDrag = false;
-    double startX = -1,startY = -1;
-    double curX = -1 , curY = -1;
-    
+    private boolean drawline = false,drawoval = false,drawrectangle = false,erase = false, freedesign = true;
+    private int fig = 0;
+    private double startX,startY,bouferX, bouferY;
+
+
     @FXML
-    private void drawRect(ActionEvent event){
-        drawrectangle = true;
-        drawline = false;
-        drawoval = false;
-        erase = false;
-        freedesign = false;
-    }
-    
-    @FXML
-    private void drawLine(ActionEvent event){
-        drawrectangle = false;
-        drawline = true;
-        drawoval = false;
-        erase = false;
-        freedesign = false;
-    }
-    
-    @FXML
-    private void drawOvl(ActionEvent event){
-        drawrectangle = false;
+    private void setOvalAsCurrentShape(ActionEvent e){
         drawline = false;
         drawoval = true;
-        erase = false;
+        drawrectangle = false;
         freedesign = false;
+        erase = false;
+        
+    }
+    
+     @FXML
+    private void setLineAsCurrentShape(ActionEvent e){
+        drawline = true;
+        drawoval = false;
+        drawrectangle = false;
+        freedesign = false;
+        erase = false;
+    }
+     @FXML
+    private void setRectangleAsCurrentShape(ActionEvent e){
+        drawline = false;
+        drawoval = false;
+        freedesign = false;
+        erase=false;
+        drawrectangle = true;
     }
     
     @FXML
-    private void drawPen(ActionEvent event){
-        drawrectangle = false;
+    private void setErase(ActionEvent e){
         drawline = false;
         drawoval = false;
+        drawrectangle = false;    
+        erase = true;
+        freedesign= false;
+    }
+    
+    @FXML
+    private void setFreeDesign(ActionEvent e){
+        drawline = false;
+        drawoval = false;
+        drawrectangle = false;    
         erase = false;
         freedesign = true;
     }
     
     @FXML
-    private void drawErr(ActionEvent event){
-        drawrectangle = false;
-        drawline = false;
-        drawoval = false;
-        erase = true;
-        freedesign = false;
-    }
-    
-    @FXML
     private void onMousePressedListener(MouseEvent e){
+        gcs[fig]=TheCanvas.getGraphicsContext2D();
+  
         this.startX = e.getX();
         this.startY = e.getY();
-        inDrag = true;
         System.err.println("mousePressed at" + startX + ", "+ startY);
+          bouferX=0; 
+          bouferY=0;
+         if(drawoval){  
+            bufferFig=0;
+         }
     }
     
     @FXML
-    private void clearCanvas(){
-        gc.clearRect(0, 0,  canvasP.getWidth(), canvasP.getHeight());
+    private void handleButtonAction(ActionEvent event) {
+   
     }
-    
-    @FXML
-    private void onMouseDraggedListener(MouseEvent e){
-         curX = e.getX();
-         curY = e.getY();
-        
-         if (inDrag == true) {
-            double w = curX - startX; 
-            double h = curY - startY;
-            if(drawline == true){
-                gc.strokeLine(startX, startY, curX, curY);
-                inDrag = false;
-            }else if(drawoval == true){
-                gc.strokeOval(startX, startY, w, h);
-                inDrag = false;
-            }else if(drawrectangle == true){
-                gc.strokeRect(startX, startY, w, h);
-                gc.fill();
-                inDrag = false;
-            }else if(freedesign == true){
-                gc.fillOval(curX, curY, 5, 5);
-            }else if(erase){
-                gc.clearRect(curX , curY, 20, 20);
-            }
-            
-        }
-    }
-    
-    
-   @FXML
-    private void onMouseExitedListener(MouseEvent event){
-        System.out.println("No puedes dibujar fuera del canvas");
-    }
-    
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        gcs = new GraphicsContext[100];
+        gcs[fig] = TheCanvas.getGraphicsContext2D();
+        gcs[fig].setFill(Color.WHITE);
+        gcs[fig].fillRect(0, 0, TheCanvas.getWidth() , TheCanvas.getHeight());
+        fig++;
     }    
     
 }

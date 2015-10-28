@@ -7,25 +7,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="618.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="micropaint.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="611.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="micropaint.FXMLDocumentController">
    <children>
-      <ToolBar orientation="VERTICAL" prefHeight="453.0" prefWidth="104.0">
+      <ToolBar orientation="VERTICAL" prefHeight="479.0" prefWidth="78.0">
         <items>
-          <Button fx:id="ractangle" onAction="#drawRect"  contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Rectangulo" />
-            <Button fx:id="line" onAction="#drawLine"  mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Linea" />
-            <Button fx:id="ovl" onAction="#drawOvl"  mnemonicParsing="false" prefWidth="78.0" text="Ovalo" />
-            <Button fx:id="penc" onAction="#drawPen" mnemonicParsing="false" prefWidth="78.0" text="Lapiz" />
-            <Button fx:id="erraser" onAction="#drawErr"  mnemonicParsing="false" prefWidth="78.0" text="Borrador">
-               <contextMenu>
-                  <ContextMenu>
-                    <items>
-                      <MenuItem fx:id="arrasall" onAction="#clearCanvas" mnemonicParsing="false" text="Borrar todo" />
-                    </items>
-                  </ContextMenu>
-               </contextMenu>
-            </Button>
+          <Button mnemonicParsing="false" text="Rectangulo" />
+            <Button mnemonicParsing="false" prefWidth="76.0" text="Linea" />
+            <Button mnemonicParsing="false" prefWidth="76.0" text="Ovalo" />
+            <Button mnemonicParsing="false" prefWidth="76.0" text="Lapiz" />
+            <MenuButton mnemonicParsing="false" prefWidth="76.0" text="Borrar">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Borrador" />
+                <MenuItem mnemonicParsing="false" text="Borrar Escena" />
+              </items>
+            </MenuButton>
         </items>
       </ToolBar>
-      <Canvas fx:id="canvasP" height="453.0" layoutX="104.0" width="515.0" onMousePressed="#onMousePressedListener" onMouseDragged="#onMouseDraggedListener"    onMouseExited="#onMouseExitedListener" />
+      <Canvas fx:id="TheCanvas" height="479.0" layoutX="86.0" width="527.0" />
    </children>
 </AnchorPane>
