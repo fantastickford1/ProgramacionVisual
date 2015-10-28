@@ -26,6 +26,6 @@
             </Button>
         </items>
       </ToolBar>
-      <Canvas fx:id="canvasP" height="453.0" layoutX="104.0" width="515.0" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseDraggedListener"   onMouseExited="#onMouseExitedListener" />
+      <Canvas fx:id="canvasP" height="453.0" layoutX="104.0" width="515.0" onMousePressed="#onMousePressedListener" onMouseDragged="#onMouseDraggedListener"    onMouseExited="#onMouseExitedListener" />
    </children>
 </AnchorPane>
