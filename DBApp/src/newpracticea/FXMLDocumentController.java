@@ -12,8 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -42,6 +46,19 @@ public class FXMLDocumentController implements Initializable {
         resultado = con.insertar("INSERT INTO userdata(Nombres,Apellidos,Direccion,Telefono,RFC) VALUES('"+name+"','"+lastname+"','"+addr+"',"+phone+",'"+rfc+"');");
         System.out.println("El resultado es: "+resultado);
     }
+    
+    /*public void openWindow(String file){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(file));
+        } catch (Exception e) {
+            Logger.getLogger();
+        }
+        
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+    }*/
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
