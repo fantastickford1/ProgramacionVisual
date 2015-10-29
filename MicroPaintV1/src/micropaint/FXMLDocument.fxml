@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="micropaint.FXMLDocumentController">
+    <children>
+      <ToolBar orientation="VERTICAL" prefHeight="453.0" prefWidth="104.0">
+        <items>
+          <Button fx:id="ractangle" onAction="#setRectangleAsCurrentShape"  contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Rectangulo" />
+            <Button fx:id="line" onAction="#setLineAsCurrentShape"  mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Linea" />
+            <Button fx:id="ovl" onAction="#setOvalAsCurrentShape"  mnemonicParsing="false" prefWidth="78.0" text="Ovalo" />
+            <Button fx:id="penc" onAction="#setFreeDesign" mnemonicParsing="false" prefWidth="78.0" text="Lapiz" />
+            <Button fx:id="erraser" onAction="#setErase"  mnemonicParsing="false" prefWidth="78.0" text="Borrador"/>
+            <Button fx:id = "clear" onAction="#clearCanvas" prefWidth="78.0" text="L.Escena"/>          
+        </items>
+      </ToolBar>
+      <Canvas fx:id="canvasP" height="453.0" layoutX="104.0" width="515.0" onMouseReleased="#onMouseReleasedListener"  onMouseDragged="#onMouseDraggedListener"  onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener"/>          
+   </children>
+</AnchorPane>
