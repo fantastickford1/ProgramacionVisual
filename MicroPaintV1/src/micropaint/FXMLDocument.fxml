@@ -7,18 +7,30 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="micropaint.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="micropaint.FXMLDocumentController">
     <children>
-      <ToolBar orientation="VERTICAL" prefHeight="453.0" prefWidth="104.0">
+      <ToolBar orientation="VERTICAL" prefHeight="453.0" prefWidth="107.0">
         <items>
-          <Button fx:id="ractangle" onAction="#setRectangleAsCurrentShape"  contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Rectangulo" />
-            <Button fx:id="line" onAction="#setLineAsCurrentShape"  mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Linea" />
-            <Button fx:id="ovl" onAction="#setOvalAsCurrentShape"  mnemonicParsing="false" prefWidth="78.0" text="Ovalo" />
-            <Button fx:id="penc" onAction="#setFreeDesign" mnemonicParsing="false" prefWidth="78.0" text="Lapiz" />
-            <Button fx:id="erraser" onAction="#setErase"  mnemonicParsing="false" prefWidth="78.0" text="Borrador"/>
-            <Button fx:id = "clear" onAction="#clearCanvas" prefWidth="78.0" text="L.Escena"/>          
+          <Button fx:id="rectButton" onAction="#setRectangleAsCurrentShape"  contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Rectangulo" />
+            <Button fx:id="lineButton" onAction="#setLineAsCurrentShape"  mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Linea" />
+            <Button fx:id="ovlButton" onAction="#setOvalAsCurrentShape"  mnemonicParsing="false" prefWidth="78.0" text="Ovalo" />
+            <Button fx:id="pencButton" onAction="#setFreeDesign"  mnemonicParsing="false" prefWidth="78.0" text="Lapiz" />
+            <MenuButton mnemonicParsing="false" prefWidth="78.0" text="Borrador">
+              <items>
+                <MenuItem fx:id="eraser" onAction="#setErase"  mnemonicParsing="false" text="Borrador" />
+                <MenuItem fx:id="clean" onAction="#clearCanvas"  mnemonicParsing="false" text="Limpiar" />
+              </items>
+            </MenuButton>
+            <ColorPicker fx:id="colorPick" prefHeight="25.0" prefWidth="78.0" />
+            <RadioButton fx:id="strokeRB" mnemonicParsing="false" selected="true" text="Stroke">
+               <toggleGroup>
+                  <ToggleGroup fx:id="shapes" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="fillRB" mnemonicParsing="false" text="Fill" toggleGroup="$shapes" />
+            <Slider fx:id="sliderSize" prefHeight="14.0" prefWidth="38.0" />          
         </items>
       </ToolBar>
-      <Canvas fx:id="canvasP" height="453.0" layoutX="104.0" width="515.0" onMouseReleased="#onMouseReleasedListener"  onMouseDragged="#onMouseDraggedListener"  onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener"/>          
+      <Canvas fx:id="TheCanvas" onMousePressed="#onMousePressedListener"  onMouseExited="#onMouseExitedListener" onMouseReleased="#onMouseReleaseListener" onMouseDragged="#onMouseDraggedListener"    height="453.0" layoutX="107.0" width="512.0" />          
    </children>
 </AnchorPane>
