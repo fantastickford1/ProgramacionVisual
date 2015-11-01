@@ -15,6 +15,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -39,9 +40,10 @@ public class FXMLDocumentController implements Initializable {
  
     @FXML private RadioButton strokeRB,fillRB;
     @FXML private Slider sliderSize;
-    @FXML private ColorPicker colorPicker;
+    @FXML private ColorPicker colorPick;
     @FXML private Canvas TheCanvas;
-    @FXML private Button rectButton,lineButton,ovlButton,pencButton,eraser;
+    @FXML private Button rectButton,lineButton,ovlButton,pencButton;
+    @FXML private MenuItem eraser;
     
     
     @FXML 
@@ -90,8 +92,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void dibujaOValo(){
-        gcs[fig].setFill(Color.BLUE);
-        gcs[fig].setStroke(Color.BLUE);
+        gcs[fig].setFill(colorPick.getValue());
+        gcs[fig].setStroke(colorPick.getValue());
         if(strokeRB.isSelected() == true){
             gcs[fig].strokeOval(startX, startY, hg, hg);
         }else
@@ -99,8 +101,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void dibujaRect(){
-        gcs[fig].setStroke(Color.BLUE);
-        gcs[fig].setFill(Color.BLUE);
+        gcs[fig].setStroke(colorPick.getValue());
+        gcs[fig].setFill(colorPick.getValue());
         if(strokeRB.isSelected() == true){
             gcs[fig].strokeRect(startX, startY, hg, hg);
         }else
@@ -109,8 +111,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void dibujarLinea(){
-        gcs[fig].setFill(Color.GREEN);
-        gcs[fig].setStroke(Color.BLUE);
+        gcs[fig].setFill(colorPick.getValue());
+        gcs[fig].setStroke(colorPick.getValue());
         gcs[fig].setLineWidth(5);
         gcs[fig].strokeLine(startX, startY, lastX, lastY);
     }
@@ -173,6 +175,30 @@ public class FXMLDocumentController implements Initializable {
         gc=TheCanvas.getGraphicsContext2D();        
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, 515, 453);
+        //////////////////////////////////
+        Image imageRect = new Image(getClass().getResourceAsStream("Stop-32.png"));
+        ImageView icR = new ImageView(imageRect);
+        icR.setFitWidth(32);
+        icR.setFitHeight(32);
+        rectButton.setGraphic(icR);  
+        
+        Image imageLinea = new Image(getClass().getResourceAsStream("Ruler-32.png"));
+        ImageView icLin = new ImageView(imageLinea);
+        icLin.setFitWidth(32);
+        icLin.setFitHeight(32);
+        lineButton.setGraphic(icLin);
+        
+        Image imageOvalo = new Image(getClass().getResourceAsStream("Chart-32.png"));
+        ImageView icOval = new ImageView(imageOvalo);
+        icOval.setFitWidth(32);
+        icOval.setFitHeight(32);
+        ovlButton.setGraphic(icOval);
+        
+        Image imageLapiz = new Image(getClass().getResourceAsStream("Pencil-32.png"));
+        ImageView icLapiz = new ImageView(imageLapiz);
+        icLapiz.setFitWidth(32);
+        icLapiz.setFitHeight(32);
+        pencButton.setGraphic(icLapiz);
     }    
     
 }
