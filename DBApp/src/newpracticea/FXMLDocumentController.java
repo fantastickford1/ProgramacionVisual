@@ -5,6 +5,7 @@
  */
 package newpracticea;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -16,7 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 /**
@@ -25,40 +26,35 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private TextField nameField,lastNameField,rfcField,addresField,phoneField;
+    /*@FXML
+    private TextField nameField,lastNameField,rfcField,addresField,phoneField;*/
+    
+    @FXML ToggleButton addDelete,upGet;
     
     @FXML
-    private void sendData(ActionEvent event) {
-        Conexion con = null;
-        try {
-            con = new Conexion(Conexion.usrBD, Conexion.passBD,"mynewdatabase");
-        }catch (ClassNotFoundException | SQLException e) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, e);
-        }
-        
-        String name = nameField.getText();
-        String lastname = lastNameField.getText();
-        String rfc = rfcField.getText();
-        String addr = addresField.getText();
-        long phone = Long.parseLong(phoneField.getText());
-        Boolean resultado = false;
-        resultado = con.insertar("INSERT INTO userdata(Nombres,Apellidos,Direccion,Telefono,RFC) VALUES('"+name+"','"+lastname+"','"+addr+"',"+phone+",'"+rfc+"');");
-        System.out.println("El resultado es: "+resultado);
+    private void newInsertDeleteWindow(ActionEvent e){
+        if(addDelete.isSelected())
+            newWindow("AddUser.fxml");
     }
     
-    /*public void openWindow(String file){
+    @FXML
+    private void newUpdateGetWindow(ActionEvent e){
+        if(upGet.isSelected())
+            newWindow("upDate.fxml");
+    }
+    
+    private void newWindow(String xmlfile){
         Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(file));
-        } catch (Exception e) {
-            Logger.getLogger();
+            root = FXMLLoader.load(getClass().getResource(xmlfile));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         Scene scene = new Scene(root);
         stage.setScene(scene);
-    }*/
+        stage.show();
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
