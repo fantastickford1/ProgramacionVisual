@@ -7,7 +7,7 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micropaint.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micropaint.FXMLDocumentController">
     <children>
       <ToolBar orientation="VERTICAL" prefHeight="453.0" prefWidth="107.0">
         <items>
@@ -28,9 +28,10 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="fillRB" mnemonicParsing="false" text="Fill" toggleGroup="$shapes" />
-            <Slider fx:id="sliderSize" prefHeight="14.0" prefWidth="38.0" />          
+            <Slider fx:id="sizeSlider" prefHeight="14.0" prefWidth="59.0" />          
         </items>
       </ToolBar>
-      <Canvas fx:id="TheCanvas" height="453.0" layoutX="107.0" onMouseDragged="#onMouseDraggedListener" onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseReleaseListener" width="512.0" />          
+      <Canvas fx:id="TheCanvas" height="453.0" layoutX="107.0" width="546.0" />
+      <Canvas fx:id="canvasGo" height="453.0" layoutX="107.0" onMouseDragged="#onMouseDraggedListener" onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseReleaseListener" width="546.0" />          
    </children>
 </AnchorPane>
