@@ -31,8 +31,8 @@ public class FXMLDocumentController implements Initializable {
     double startX, startY, lastX,lastY,oldX,oldY;
     double hg;
     //>>>>>>>>>>>>>>>>>>>>>>>FXML Variables<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    @FXML private RadioButton strokeRB,fillRB;
-    @FXML private ColorPicker colorPick;
+    @FXML private RadioButton strokeRB,fillRB,strokeFillRB;
+    @FXML private ColorPicker colorPick,FillcolorPick;
     @FXML private Canvas TheCanvas,canvasGo;
     @FXML private Button rectButton,lineButton,ovlButton,pencButton;
     @FXML private Slider sizeSlider;
@@ -89,10 +89,17 @@ public class FXMLDocumentController implements Initializable {
         gcB.setLineWidth(sizeSlider.getValue());
         
         if(fillRB.isSelected()){
-            gcB.setFill(colorPick.getValue());
+            gcB.setFill(FillcolorPick.getValue());
             gcB.fillOval(startX, startY, wh, hg);
-        }else{
+        }
+        if(strokeRB.isSelected()){
             gcB.setStroke(colorPick.getValue());
+            gcB.strokeOval(startX, startY, wh, hg);
+        }
+        if(strokeFillRB.isSelected()){
+            gcB.setFill(FillcolorPick.getValue());
+            gcB.setStroke(colorPick.getValue());
+            gcB.fillOval(startX, startY, wh, hg);
             gcB.strokeOval(startX, startY, wh, hg);
         }
     }
@@ -104,10 +111,17 @@ public class FXMLDocumentController implements Initializable {
         gcB.setLineWidth(sizeSlider.getValue());
         
         if(fillRB.isSelected()){
-            gcB.setFill(colorPick.getValue());
+            gcB.setFill(FillcolorPick.getValue());
             gcB.fillRect(startX, startY, wh, hg);
-        }else{
+        }
+        if(strokeRB.isSelected()){
             gcB.setStroke(colorPick.getValue());
+            gcB.strokeRect(startX, startY, wh, hg);
+        }
+        if(strokeFillRB.isSelected()){
+            gcB.setFill(FillcolorPick.getValue());
+            gcB.setStroke(colorPick.getValue());
+            gcB.fillRect(startX, startY, wh, hg);
             gcB.strokeRect(startX, startY, wh, hg);
         }
     }
@@ -145,11 +159,19 @@ public class FXMLDocumentController implements Initializable {
         
         if(fillRB.isSelected()){
             gcF.clearRect(0, 0, canvasGo.getWidth(), canvasGo.getHeight());
-            gcF.setFill(colorPick.getValue());
+            gcF.setFill(FillcolorPick.getValue());
             gcF.fillOval(startX, startY, wh, hg);
-        }else{
+        }
+        if(strokeRB.isSelected()){
             gcF.clearRect(0, 0, canvasGo.getWidth(), canvasGo.getHeight());
             gcF.setStroke(colorPick.getValue());
+            gcF.strokeOval(startX, startY, wh, hg );
+        }
+        if(strokeFillRB.isSelected()){
+            gcF.clearRect(0, 0, canvasGo.getWidth(), canvasGo.getHeight());
+            gcF.setFill(FillcolorPick.getValue());
+            gcF.setStroke(colorPick.getValue());
+            gcF.fillOval(startX, startY, wh, hg);
             gcF.strokeOval(startX, startY, wh, hg );
         }
        }
@@ -162,11 +184,19 @@ public class FXMLDocumentController implements Initializable {
         
         if(fillRB.isSelected()){
             gcF.clearRect(0, 0, canvasGo.getWidth(), canvasGo.getHeight());
-            gcF.setFill(colorPick.getValue());
+            gcF.setFill(FillcolorPick.getValue());
             gcF.fillRect(startX, startY, wh, hg);
-        }else{
+        }
+        if(strokeRB.isSelected()){
             gcF.clearRect(0, 0, canvasGo.getWidth(), canvasGo.getHeight());
             gcF.setStroke(colorPick.getValue());
+            gcF.strokeRect(startX, startY, wh, hg );
+        }
+        if(strokeFillRB.isSelected()){
+            gcF.clearRect(0, 0, canvasGo.getWidth(), canvasGo.getHeight());
+            gcF.setFill(FillcolorPick.getValue());
+            gcF.setStroke(colorPick.getValue());
+            gcF.fillRect(startX, startY, wh, hg);
             gcF.strokeRect(startX, startY, wh, hg );
         }
     }

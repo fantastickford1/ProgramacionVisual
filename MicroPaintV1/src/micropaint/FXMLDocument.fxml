@@ -21,13 +21,17 @@
                 <MenuItem fx:id="clean" mnemonicParsing="false" onAction="#clearCanvas" text="Limpiar" />
               </items>
             </MenuButton>
+            <Label text="Stroke color" />
             <ColorPicker fx:id="colorPick" prefHeight="25.0" prefWidth="78.0" />
+            <Label text="Fill color" />
+            <ColorPicker fx:id="FillcolorPick" prefHeight="25.0" prefWidth="78.0" />
             <RadioButton fx:id="strokeRB" mnemonicParsing="false" selected="true" text="Stroke">
                <toggleGroup>
                   <ToggleGroup fx:id="shapes" />
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="fillRB" mnemonicParsing="false" text="Fill" toggleGroup="$shapes" />
+            <RadioButton fx:id="strokeFillRB" mnemonicParsing="false" text="Stroke&amp;Fill" toggleGroup="$shapes" />
             <Slider fx:id="sizeSlider" prefHeight="14.0" prefWidth="59.0" />          
         </items>
       </ToolBar>
