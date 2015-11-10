@@ -34,7 +34,7 @@ public class AddUserController implements Initializable {
     private void sendData(ActionEvent event) {
         Conexion con = null;
         try {
-            con = new Conexion(Conexion.usrBD, Conexion.passBD,"userdata");
+            con = new Conexion(Conexion.usrBD, Conexion.passBD,"mynewdatabase");
         }catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -58,7 +58,7 @@ public class AddUserController implements Initializable {
         }
         if(rfc.length() > 2 && controler == true){
             Boolean resultado = false;
-            resultado = con.insertar("INSERT INTO agenda(nombre,apellido,direccion,telefono,rfc) VALUES('"+name+"','"+lastname+"','"+addr+"',"+phone+",'"+rfc+"');");
+            resultado = con.insertar("INSERT INTO userdata(Nombres,Apellidos,Direccion,Telefono,RFC) VALUES('"+name+"','"+lastname+"','"+addr+"',"+phone+",'"+rfc+"');");
             System.out.println("El resultado es: "+resultado);
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -70,29 +70,6 @@ public class AddUserController implements Initializable {
         }
     }
     
-    @FXML
-    private void deleteData(ActionEvent event){
-       Conexion con = null; 
-       try {
-            con = new Conexion(Conexion.usrBD, Conexion.passBD,"userdata");
-        }catch (ClassNotFoundException | SQLException e) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, e);
-        }
-       rfc = delRFCField.getText();
-       
-       if(rfc.length() > 2){
-            Boolean resultado = false;
-            resultado = con.borrar("DELETE FROM agenda WHERE rfc = '"+rfc+"';");
-            System.out.println("El resultado es: "+resultado);
-       }else{
-           Alert alert = new Alert(Alert.AlertType.WARNING);
-           alert.setTitle("Warning!");
-           alert.setHeaderText("RFC is necesary");
-           alert.setContentText("You have to especify the RFC");
-           Optional<ButtonType> butt = alert.showAndWait();
-           alert.showAndWait();
-       }
-    }
     
     /**
      * Initializes the controller class.

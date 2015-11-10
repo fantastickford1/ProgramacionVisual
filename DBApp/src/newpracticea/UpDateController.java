@@ -15,8 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -25,57 +25,100 @@ import javafx.scene.control.TextField;
  */
 public class UpDateController implements Initializable {
 
-    @FXML Button consultBtn,updateBtn,lastBtn,nextBtn;
     @FXML TextField nameField,lastNField,addresField,phoneField,rfcField;
-    @FXML CheckBox firstCheck,lastCheck,addresCheck,phoneCheck,rfcCheck;
+    @FXML Button updateBtn,deleteBtn;
     private ResultSet rs=null;
-    String rfcLat;
+    private String nameF,lastNF,addresF,phoneF,rfcF;
+    
+    @FXML
+    private void isEdited(KeyEvent event){
+        if(nameField.getText().equals(nameF))
+            updateBtn.setDisable(true);
+        else
+            updateBtn.setDisable(false);
+        if(lastNField.getText().equals(lastNF))
+            updateBtn.setDisable(true);
+        else
+            updateBtn.setDisable(false);
+        if(addresField.getText().equals(addresF))
+            updateBtn.setDisable(true);
+        else
+            updateBtn.setDisable(false);
+        if(phoneField.getText().equals(phoneF))
+            updateBtn.setDisable(true);
+        else
+            updateBtn.setDisable(false);
+        if(rfcField.getText().equals(rfcF))
+            updateBtn.setDisable(true);
+        else
+            updateBtn.setDisable(false);
+            
+    }
+    
+    @FXML
+    private void deleteData(ActionEvent event){
+       Conexion con = null; 
+       try {
+            con = new Conexion(Conexion.usrBD, Conexion.passBD,"mynewdatabase");
+        }catch (ClassNotFoundException | SQLException e) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        String rfc = rfcField.getText();
+       
+        Boolean resultado;
+        resultado = con.borrar("DELETE FROM userdata WHERE RFC = '"+rfc+"';");
+        System.out.println("El resultado es: "+resultado);
+    }
     
     @FXML
     private void updateall(ActionEvent evente){
         Conexion con = null;
         try {
-            con = new Conexion(Conexion.usrBD, Conexion.passBD, "userdata");
+            con = new Conexion(Conexion.usrBD, Conexion.passBD, "mynewdatabase");
         } catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(UpDateController.class.getName()).log(Level.SEVERE,null,e);
         }
         
-        if(firstCheck.isSelected() || lastCheck.isSelected() || addresCheck.isSelected() || phoneCheck.isSelected() || rfcCheck.isSelected() ){
-            String name = nameField.getText();
-            String lastN = lastNField.getText();
-            String addr = addresField.getText();
-            long phone = Long.parseLong(phoneField.getText());
-            String rfc = rfcField.getText();
+        String name = nameField.getText();
+        String lastN = lastNField.getText();
+        String addr = addresField.getText();
+        long phone = Long.parseLong(phoneField.getText());
+        String rfc = rfcField.getText();
         
-            boolean Update = con.actualizar("UPDATE agenda SET nombre = '"+ name +"',apellido = '"+ lastN +"',direccion = '"+ addr +"',telefono = "+phone+",rfc = '"+rfc+"' WHERE rfc = '"+rfcLat+"';");
-            System.err.println(Update);
-        }
+        boolean Update = con.actualizar("UPDATE userdata SET Nombres = '"+ name +"',Apellidos = '"+ lastN +"',Direccion = '"+ addr +"',Telefono = "+phone+",RFC = '"+rfc+"' WHERE RFC = '"+rfcF+"';");
+        System.err.println(Update);
+        
         
     }
-    
     
     @FXML
     private void consultarDB(ActionEvent event){
         Conexion con = null;
         try {
-            con = new Conexion(Conexion.usrBD, Conexion.passBD,"userdata");
+            con = new Conexion(Conexion.usrBD, Conexion.passBD,"mynewdatabase");
         }catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(UpDateController.class.getName()).log(Level.SEVERE, null, e);
         }
-        rs=con.buscar("select * from agenda");
+        rs=con.buscar("select * from userdata");
         nextData();
+        deleteBtn.setDisable(false);
     }
     
     @FXML 
     private void nextData(){
         try {
             if(rs.next()){
-                nameField.setText(rs.getString("nombre"));
-                lastNField.setText(rs.getString("apellido"));
-                addresField.setText(rs.getString("direccion"));
-                phoneField.setText("" + rs.getLong("telefono"));
-                rfcField.setText(rs.getString("rfc"));
-                rfcLat = rfcField.getText();
+                nameField.setText(rs.getString("Nombres"));
+                lastNField.setText(rs.getString("Apellidos"));
+                addresField.setText(rs.getString("Direccion"));
+                phoneField.setText("" + rs.getLong("Telefono"));
+                rfcField.setText(rs.getString("RFC"));
+                nameF = nameField.getText();
+                lastNF = lastNField.getText();
+                addresF = addresField.getText();
+                phoneF = phoneField.getText();
+                rfcF = rfcField.getText();
+                        
             }
         } catch (SQLException ex) {
             Logger.getLogger(UpDateController.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,40 +129,20 @@ public class UpDateController implements Initializable {
     private void lastData(){
         try {
             if(rs.previous()){
-                nameField.setText(rs.getString("nombre"));
-                lastNField.setText(rs.getString("apellido"));
-                addresField.setText(rs.getString("direccion"));
-                phoneField.setText("" + rs.getLong("telefono"));
-                rfcField.setText(rs.getString("rfc"));
-                rfcLat = rfcField.getText();
+                nameField.setText(rs.getString("Nombres"));
+                lastNField.setText(rs.getString("Apellidos"));
+                addresField.setText(rs.getString("Direccion"));
+                phoneField.setText("" + rs.getLong("Telefono"));
+                rfcField.setText(rs.getString("RFC"));
+                nameF = nameField.getText();
+                lastNF = lastNField.getText();
+                addresF = addresField.getText();
+                phoneF = phoneField.getText();
+                rfcF = rfcField.getText();
             }
         } catch (SQLException ex) {
             Logger.getLogger(UpDateController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    @FXML
-    private void selectedSquare(ActionEvent e){
-        if(firstCheck.isSelected()){
-            nameField.setEditable(true);
-        }else
-            nameField.setEditable(false);
-        if(lastCheck.isSelected()){
-            lastNField.setEditable(true);
-        }else
-            lastNField.setEditable(false);
-        if(addresCheck.isSelected()){
-            addresField.setEditable(true);
-        }else
-            addresField.setEditable(false);
-        if(phoneCheck.isSelected()){
-            phoneField.setEditable(true);
-        }else
-            phoneField.setEditable(false);
-        if(rfcCheck.isSelected()){
-            rfcField.setEditable(true);
-        }else
-            rfcField.setEditable(false);
     }
     
     
